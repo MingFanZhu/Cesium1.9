@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./lib/videojs/video-js.css" rel="stylesheet" />
+    <link href="../Source/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        html,
+        body,
+        #cesiumContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #videos {
+            position: absolute;
+            width: 400px;
+            height: 225px;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="../Source/Cesium.js"></script>
+    <script src="./lib/videojs/video.min.js"></script>
+    <div id="cesiumContainer">
+        <div id="videos">
+            <video id="myVideo${n}" class="video-js" controls autoplay="true" preload="auto" data-setup="{}">
+                <source src="http://220.161.87.62:8800/hls/0/index.m3u8" type="application/x-mpegURL">
+                </source>
+            </video>`
+        </div>
+    </div>
+    <script>
+        window.videojs = videojs;
+    </script>
+    <script type="module" src="project.js"></script>
+</body>
+
+</html>
