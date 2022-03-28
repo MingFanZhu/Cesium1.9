@@ -666,6 +666,15 @@ function getLine(dynamicGeometryUpdater) {
   const primitives = dynamicGeometryUpdater._primitives;
   if (!defined(polylineCollection) || polylineCollection.isDestroyed()) {
     polylineCollection = new PolylineCollection();
+    //add by zmf begin
+    if (
+      dynamicGeometryUpdater._geometryUpdater._entity._polyline.depthTest !==
+      undefined
+    ) {
+      polylineCollection.depthTest =
+        dynamicGeometryUpdater._geometryUpdater._entity._polyline.depthTest;
+    }
+    //add by zmf end
     polylineCollections[sceneId] = polylineCollection;
     primitives.add(polylineCollection);
   } else if (!primitives.contains(polylineCollection)) {

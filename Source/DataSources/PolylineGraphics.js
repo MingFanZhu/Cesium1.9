@@ -244,5 +244,8 @@ PolylineGraphics.prototype.merge = function (source) {
     source.classificationType
   );
   this.zIndex = defaultValue(this.zIndex, source.zIndex);
+  //add by zmf begin
+  this.depthTest = defaultValue(source.depthTest, true);
+  //add by zmf end
 };
 export default PolylineGraphics;

@@ -556,7 +556,13 @@ PolylineCollection.prototype.update = function (frameState) {
   }
 
   const pass = frameState.passes;
-  const useDepthTest = frameState.morphTime !== 0.0;
+  //add by zmf begin
+  var useDepthTest = frameState.morphTime !== 0.0;
+
+  if (this.depthTest === false) {
+    useDepthTest = false;
+  }
+  //add by zmf end
 
   if (
     !defined(this._opaqueRS) ||
