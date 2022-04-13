@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #CesiumContainer {
+            width: 100%;
+        }
+
+        #tool {
+            position: absolute;
+            z-index: 10;
+            top: 2em;
+            left: 2em;
+            background-color: rgba(240, 248, 255, 0.719);
+        }
+
+        #tool span {
+            display: block;
+        }
+    </style>
+    <link rel="stylesheet" href="../Source/Widgets/widgets.css">
+</head>
+
+<body>
+    <div id="CesiumContainer"></div>
+    <div id="tool">
+        <span>线宽:<input type="range" min=0.5 max=2.5 value=1.0 step=0.1
+                oninput="lineWidthChange(this)"><label>1.0</label></span>
+        <span>法线夹角:<input type="range" min=0 max=120 value=30
+                oninput="thresholdAngleChange(this)"><label>30</label></span>
+        <span>透明度:<input type="range" min=0.0 max=1.0 value=1.0 step=0.1
+                oninput="alphaChange(this)"><label>1.0</label></span>
+        <span>颜色:<input type="color" oninput="edgeColorChange(this)"></span>
+    </div>
+    <script type="module">
+        import * as Cesium from "../Source/Cesium.js";
+        window.CESIUM_BASE_URL = "../Source";
+
+        window.Cesium = Cesium;
+        window.onload = function() {
+            document.querySelector("#CesiumContainer").style.height = window.innerHeight + 'px';
+        }
+
+        window.onresize = function() {
+            document.querySelector("#CesiumContainer").style.height = window.innerHeight + 'px';
+        }
+
+        window.viewer = new Cesium.Viewer("CesiumContainer");
+        viewer._cesiumWidget._creditContainer.style.display = "none";
+        viewer.scene.debugShowFramesPerSecond = true;
+
+
+        window.tileset = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
+            // url: "http://58.213.48.101:81/psdemo/data/buildings_finnal/tileset.json",
+            url: "http://58.213.48.101:81/xtwydemo/data/buildings/tileset.json",
+        }));
+
+        viewer.camera.setView({
+            destination: new Cesium.Cartesian3(-2619173.012136504, 4746531.899399428, 3349045.60150591),
+            orientation: {
+                heading: 5.936844226681135,
+                pitch: -0.9353085022130889,
+                roll: 6.281458540373304
+            }
+        });
+
+        window.edgemode = new Cesium.EdgeMode(viewer, {
+            target: tileset,
+            lineWidth: 1
+        })
+
+        viewer.entities.add({
+            position: new Cesium.Cartesian3(-2619126.927154776, 4746536.210223354, 3348998.669422846),
+            box: {
+                dimensions: new Cesium.Cartesian3(10, 10, 10)
+            }
+        });
+
+        window.lineWidthChange = function lineWidthChange(e) {
+            var value = parseFloat(e.value);
+            edgemode.lineWidth = value;
+            e.parentElement.querySelector("label").innerHTML = e.value;
+        }
+
+        window.thresholdAngleChange = function thresholdAngleChange(e) {
+            var value = parseFloat(e.value);
+            edgemode.thresholdAngle = value;
+            e.parentElement.querySelector("label").innerHTML = e.value;
+        }
+
+        window.alphaChange = function alphaChange(e) {
+            var value = parseFloat(e.value);
+            edgemode.alpha = value;
+            e.parentElement.querySelector("label").innerHTML = e.value;
+        }
+
+        window.edgeColorChange = function edgeColorChange(e) {
+            edgemode.edgeColor = Cesium.Color.fromCssColorString(e.value);
+        }
+    </script>
+</body>
+
+</html>
