@@ -173,6 +173,7 @@ function createAndDraw(command) {
   var frameState = this._scene._frameState;
   var shaderProgram = command.shaderProgram;
   if (command.edgemode != undefined) {
+    command.edgemode.framebuffer = this._framebuffer;
     frameState.commandList.push(command.edgemode);
   } else {
     var vertexShaderSource = shaderProgram.vertexShaderSource;
