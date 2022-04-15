@@ -12,6 +12,18 @@ import defaultValue from "../Core/defaultValue.js";
 import PostProcessStage from "./PostProcessStage.js";
 import DrawCommand from "../Renderer/DrawCommand.js";
 
+/**
+ * @alias EdgeMode
+ * @constructor
+ * 
+ * @param {Viewer} viewer 
+ * @param {Object} options
+ * @param {Cesium3DTileset} options.target
+ * @param {Number} [options.lineWidth=1.0] 线宽
+ * @param {Color} [options.edgeColor] 线的颜色
+ * @param {Number} [options.thresholdAngle=45] 法线夹角，单位度
+ * @param {Number} [options.alpha=1.0] 透明度
+ */
 function EdgeMode(viewer, options) {
   this._viewer = viewer;
   this._scene = viewer.scene;
@@ -365,6 +377,9 @@ function addPostProcessStage() {
   that._postStage = PostStage;
 }
 
+/**
+ * 销毁
+ */
 EdgeMode.prototype.destroy = function () {
   this._scene.afterDrawcommad.removeEventListener(render);
   this._viewer.scene.postProcessStages.remove(this._postStage);
