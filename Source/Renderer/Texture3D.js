@@ -14,6 +14,7 @@ import TextureMinificationFilter from "./TextureMinificationFilter.js";
 
 /**
  * @private
+ * @constructor
  */
 function Texture3D(options) {
     options = defaultValue(options, defaultValue.EMPTY_OBJECT);

@@ -25,7 +25,7 @@ import BoundingSphere from "../Core/BoundingSphere.js";
  * @param {String} options.fragmentShaderSource 片元着色器代码
  * @param {Object} options.uniformmap 静态变量
  * @param {Boolean} options.translucent 半透明
- * @param {Texture3D} options.texture 3D纹理
+ * @param {Object} options.texture 3D纹理
  */
 function VolumeGraphics(options) {
     var boxGeometry = new BoxGeometry(options.boxGeometry);
@@ -53,7 +53,7 @@ function VolumeGraphics(options) {
 
 /**
  * 
- * @param {FrameState} frameState 
+ * @param {Object} frameState 
  */
 VolumeGraphics.prototype.update = function(frameState) {
     if (!this._drawCommand) {
