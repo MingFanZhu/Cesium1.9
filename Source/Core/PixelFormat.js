@@ -166,6 +166,21 @@ const PixelFormat = {
    * @constant
    */
   RGBA_BC7: WebGLConstants.COMPRESSED_RGBA_BPTC_UNORM,
+
+  //add by zmf begin
+  //添加一些webgl2的常量，实际上在WebGLConstants.js中已经存在枚举
+  RED: WebGLConstants.RED,
+
+  RG: WebGLConstants.RG,
+
+  RED_INTEGER: WebGLConstants.RED_INTEGER,
+
+  RG_INTEGER: WebGLConstants.RG_INTEGER,
+
+  RGB_INTEGER: WebGLConstants.RGB_INTEGER,
+
+  RGBA_INTEGER: WebGLConstants.RGBA_INTEGER
+  //add by zmf end
 };
 
 /**
@@ -211,7 +226,15 @@ PixelFormat.validate = function (pixelFormat) {
     pixelFormat === PixelFormat.RGB_ETC1 ||
     pixelFormat === PixelFormat.RGB8_ETC2 ||
     pixelFormat === PixelFormat.RGBA8_ETC2_EAC ||
-    pixelFormat === PixelFormat.RGBA_BC7
+    pixelFormat === PixelFormat.RGBA_BC7 ||
+    //add by zmf begin
+    pixelFormat === PixelFormat.RED ||
+    pixelFormat === PixelFormat.RG ||
+    pixelFormat === PixelFormat.RED_INTEGER ||
+    pixelFormat === PixelFormat.RG_INTEGER ||
+    pixelFormat === PixelFormat.RGB_INTEGER ||
+    pixelFormat === PixelFormat.RGBA_INTEGER
+    //add by zmf end
   );
 };
 
