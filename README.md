@@ -1,6 +1,6 @@
-##修改自Cesium1.9版本
+## 修改自Cesium1.9版本
 如需查看修改内容，可全局搜索add by zmf
-##下方是原Cesium的markdawn
+## 下方是原Cesium的markdawn
 
 <p align="center">
 <img src="https://github.com/CesiumGS/cesium/wiki/logos/Cesium_Logo_Color.jpg" width="50%" />
